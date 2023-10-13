@@ -1,0 +1,16 @@
+Tabla 1: Analyzing investment rate and growth						
+	(1)	(2)	(3)	(4)	(5)	(6)
+	Dependent Variable: Share gross K formation					
+	Non-Aggregated Yearly growht rate					
+	Aggregated growth rate: \					
+VARIABLES	Pooled data	Aggregated growth rate: \ 10 years	Aggregated growth rate: \ 15 years	Aggregated growth rate: \ 20 years	Aggregated growth rate: \ 30 years	Aggregated growth rate: \ 50 years
+						
+growth_rate	0.208***	0.324***	0.207***	0.444***	0.424***	0.341*
+	(0.0247)	(0.0883)	(0.0795)	(0.141)	(0.150)	(0.180)
+Constant	0.211***	0.206***	0.209***	0.202***	0.205***	0.207***
+	(0.00190)	(0.00430)	(0.00402)	(0.00625)	(0.00668)	(0.00764)
+						
+Observations	10,216	1,046	817	637	523	362
+R-squared	-0.148	0.613	0.626	0.653	0.676	0.726
+Standard errors in parentheses						
+*** p<0.01, ** p<0.05, * p<0.1						
