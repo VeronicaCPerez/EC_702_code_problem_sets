@@ -364,14 +364,15 @@ ktransit=[kss kss ktransit'];
 Wtransit=[Wss Wss Wtransit'];
 Rtransit=[Rss Rss Rtransit'];
 rtransit=[rss rss rtransit'];
-Itransit=[Iss Iss Itransit'];
-Ctransit=[Css Css Ctransit'];
-Ytransit=[Yss Yss Ytransit'];
+Itransit=[Iss Iss Itransit];
+Ctransit=[Css Css Ctransit];
+Ytransit=[Yss Yss Ytransit];
 
 transition_new=figure;
 set(transition_new, 'Color', 'white');  % Set the figure background color to white
+sgtitle('Alpha Shock A>Abarrita')
+
 subplot(2,4,1)
-sgtitle('Alpha Shock; A = 0.5');
 plot(transitspan,ktransit,'b--','LineWidth',lwidnum)
 line([transitspan(1) transitspan(end)],[kss_new,kss_new],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
@@ -415,11 +416,11 @@ set(gca,'FontSize',fsizenum)
 % investment Itransit Iss
 subplot(2,4,5)
 plot(transitspan,Itransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Iss_new,Iss_new],'Color',[1 0 0],'LineStyle','--')
+line([transitspan(1) transitspan(end)],[Iss_new,Iss],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
 ylabel('Investment');
 title('Transition for Investment')
-legend('Investment','New st st','Location','SouthEast');
+legend('Investment','Iss','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
@@ -427,22 +428,22 @@ set(gca,'FontSize',fsizenum)
 % consumption Ctransit Css
 subplot(2,4,6)
 plot(transitspan,Ctransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Css_new,Css_new],'Color',[1 0 0],'LineStyle','--')
+line([transitspan(1) transitspan(end)],[Css,Css],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
 ylabel('Consumption');
 title('Transition for Consumption')
-legend('Consumption','New st st','Location','SouthEast');
+legend('Consumption','Css','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
 % Output Ytransit Yss
 subplot(2,4,7)
 plot(transitspan,Ytransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Yss_new,Yss_new],'Color',[1 0 0],'LineStyle','--')
+line([transitspan(1) transitspan(end)],[Yss,Yss],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
 ylabel('Output');
 title('Transition for Output')
-legend('Output','New st st','Location','SouthEast');
+legend('Output','Yss','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
