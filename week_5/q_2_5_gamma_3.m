@@ -32,7 +32,7 @@ transitspan=0:T-1; %time span for transition
 
 %model parameters (note, this is parametrized in a way such that one unit
 %of time is a year)
-gamma=1;  %this means that there is a low willingness to subs c over time
+gamma=1.1;  %this means that there is a low willingness to subs c over time
 delta=0.06;
 alpha=0.3;
 beta=0.95;
@@ -60,7 +60,7 @@ Yss=A*kss^(alpha)*(ell)^(1-alpha);
 %define grid
 kmin=kss*0.5;
 kmax=kss*2;
-knum=1000;
+knum=4000;
 K0=linspace(kmin,kmax,knum);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -372,7 +372,7 @@ Ytransit=[Yss Yss Ytransit'];
 transition_new=figure('Position', get(0, 'Screensize'));
 set(transition_new, 'Color', 'white');  % Set the figure background color to white
 subplot(2,4,1)
-sgtitle('Alpha Shock; A = Abar+0.01 = 0.3854; gamma=1');
+sgtitle('Alpha Shock; A = Abar+0.01 = 0.3854; gamma=1.1');
 plot(transitspan,ktransit,'b--','LineWidth',lwidnum)
 line([transitspan(1) transitspan(end)],[kss_new,kss_new],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')

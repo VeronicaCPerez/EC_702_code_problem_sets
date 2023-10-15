@@ -60,7 +60,7 @@ Yss=A*kss^(alpha)*(ell)^(1-alpha);
 %define grid
 kmin=kss*0.5;
 kmax=kss*2;
-knum=1000;
+knum=4000;
 K0=linspace(kmin,kmax,knum);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -447,5 +447,5 @@ legend('Output','New st st','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
-saveas(transition_new,"q_2_5.png")
-saveas(transition_new,"/Users/veronica/Dropbox/Apps/Overleaf/Macro_EC_702_PS_cd0814_jayinliu_vcperez/figures/PS_5_q_2_5.png")
+saveas(transition_new,"q_2_5_1.png")
+saveas(transition_new,"/Users/veronica/Dropbox/Apps/Overleaf/Macro_EC_702_PS_cd0814_jayinliu_vcperez/figures/PS_5_q_2_5_1.png")

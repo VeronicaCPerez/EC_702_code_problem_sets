@@ -60,7 +60,7 @@ Yss=A*kss^(alpha)*(ell)^(1-alpha);
 %define grid
 kmin=kss*0.5;
 kmax=kss*2;
-knum=1000;
+knum=4000;
 K0=linspace(kmin,kmax,knum);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
