@@ -2,6 +2,7 @@
 % Solves the Planner's problem using VFI %
 % Matt Hong and Pascual Restrepo, EC 702 Fall 2020
 % Edits Hannah Rhodenhiser Fall 2021
+% Edits by Veronica Perez for PSet 5 EC 702 Pascual Restrepo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close all; clear; clc;
 
@@ -25,7 +26,7 @@ disp(' ')
 vfmaxit = 1000; %max number of VF iterations
 vftol = 1e-7;       %tolerance on Bellman equation, in percentages
 
-T=40;                    %final period for transition
+T=100;                    %final period for transition
 transitspan=0:T-1; %time span for transition
 
 
@@ -40,7 +41,7 @@ ell=1;      %normalization
 %exact SS quantities
 Abar=(1/beta-1+delta)/alpha;
 Abar;
-A=0.5;
+A=Abar+0.03;
 
 %exact SS quantities
 %Hannahs for kss:
@@ -162,80 +163,80 @@ Itransit=delta*ktransit;
 Ctransit=A*ktransit.^(alpha)*(ell)^(1-alpha) - ktransit*delta;
 Ytransit=A*ktransit.^(alpha)*(ell)^(1-alpha);
 
-transition=figure;
-subplot(2,4,1)
-plot(transitspan,ktransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[kss,kss],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Capital');
-title('Transition for Capital')
-legend('Capital','KSS','Location','SouthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
-
-subplot(2,4,2)
-plot(transitspan,Rtransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Rss,Rss],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Rental Rate');
-title('Transition for Rental Rate')
-legend('Rental Rate','RSS','Location','NorthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
-
-subplot(2,4,3)
-plot(transitspan,rtransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[rss,rss],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Interest Rate');
-title('Transition for Interest Rate')
-legend('Interest Rate','rSS','Location','NorthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
-
-subplot(2,4,4)
-plot(transitspan,Wtransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Wss,Wss],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Real Wage');
-title('Transition for Real Wage')
-legend('Real Wage','Wss','Location','SouthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
-
-% investment Itransit Iss
-subplot(2,4,5)
-plot(transitspan,Itransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Iss,Iss],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Investment');
-title('Transition for Investment')
-legend('Investment','Iss','Location','SouthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
-
-
-% consumption Ctransit Css
-subplot(2,4,6)
-plot(transitspan,Ctransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Css,Css],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Consumption');
-title('Transition for Consumption')
-legend('Consumption','Css','Location','SouthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
-
-% Output Ytransit Yss
-subplot(2,4,7)
-plot(transitspan,Ytransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Yss,Yss],'Color',[1 0 0],'LineStyle','--')
-xlabel('Time')
-ylabel('Output');
-title('Transition for Output')
-legend('Output','Yss','Location','SouthEast');
-legend boxoff;
-set(gca,'FontSize',fsizenum)
+% transition=figure;
+% subplot(2,4,1)
+% plot(transitspan,ktransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[kss,kss],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Capital');
+% title('Transition for Capital')
+% legend('Capital','KSS','Location','SouthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
+% 
+% subplot(2,4,2)
+% plot(transitspan,Rtransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[Rss,Rss],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Rental Rate');
+% title('Transition for Rental Rate')
+% legend('Rental Rate','RSS','Location','NorthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
+% 
+% subplot(2,4,3)
+% plot(transitspan,rtransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[rss,rss],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Interest Rate');
+% title('Transition for Interest Rate')
+% legend('Interest Rate','rSS','Location','NorthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
+% 
+% subplot(2,4,4)
+% plot(transitspan,Wtransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[Wss,Wss],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Real Wage');
+% title('Transition for Real Wage')
+% legend('Real Wage','Wss','Location','SouthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
+% 
+% % investment Itransit Iss
+% subplot(2,4,5)
+% plot(transitspan,Itransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[Iss,Iss],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Investment');
+% title('Transition for Investment')
+% legend('Investment','Iss','Location','SouthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
+% 
+% 
+% % consumption Ctransit Css
+% subplot(2,4,6)
+% plot(transitspan,Ctransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[Css,Css],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Consumption');
+% title('Transition for Consumption')
+% legend('Consumption','Css','Location','SouthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
+% 
+% % Output Ytransit Yss
+% subplot(2,4,7)
+% plot(transitspan,Ytransit,'b--','LineWidth',lwidnum)
+% line([transitspan(1) transitspan(end)],[Yss,Yss],'Color',[1 0 0],'LineStyle','--')
+% xlabel('Time')
+% ylabel('Output');
+% title('Transition for Output')
+% legend('Output','Yss','Location','SouthEast');
+% legend boxoff;
+% set(gca,'FontSize',fsizenum)
 
 
 
@@ -364,15 +365,14 @@ ktransit=[kss kss ktransit'];
 Wtransit=[Wss Wss Wtransit'];
 Rtransit=[Rss Rss Rtransit'];
 rtransit=[rss rss rtransit'];
-Itransit=[Iss Iss Itransit];
-Ctransit=[Css Css Ctransit];
-Ytransit=[Yss Yss Ytransit];
+Itransit=[Iss Iss Itransit'];
+Ctransit=[Css Css Ctransit'];
+Ytransit=[Yss Yss Ytransit'];
 
-transition_new=figure;
+transition_new=figure('Position', get(0, 'Screensize'));
 set(transition_new, 'Color', 'white');  % Set the figure background color to white
-sgtitle('Alpha Shock A>Abarrita')
-
 subplot(2,4,1)
+sgtitle('Alpha Shock; A = Abar+0.03 = 0.4054');
 plot(transitspan,ktransit,'b--','LineWidth',lwidnum)
 line([transitspan(1) transitspan(end)],[kss_new,kss_new],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
@@ -416,11 +416,11 @@ set(gca,'FontSize',fsizenum)
 % investment Itransit Iss
 subplot(2,4,5)
 plot(transitspan,Itransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Iss_new,Iss],'Color',[1 0 0],'LineStyle','--')
+line([transitspan(1) transitspan(end)],[Iss_new,Iss_new],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
 ylabel('Investment');
 title('Transition for Investment')
-legend('Investment','Iss','Location','SouthEast');
+legend('Investment','New st st','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
@@ -428,23 +428,24 @@ set(gca,'FontSize',fsizenum)
 % consumption Ctransit Css
 subplot(2,4,6)
 plot(transitspan,Ctransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Css,Css],'Color',[1 0 0],'LineStyle','--')
+line([transitspan(1) transitspan(end)],[Css_new,Css_new],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
 ylabel('Consumption');
 title('Transition for Consumption')
-legend('Consumption','Css','Location','SouthEast');
+legend('Consumption','New st st','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
 % Output Ytransit Yss
 subplot(2,4,7)
 plot(transitspan,Ytransit,'b--','LineWidth',lwidnum)
-line([transitspan(1) transitspan(end)],[Yss,Yss],'Color',[1 0 0],'LineStyle','--')
+line([transitspan(1) transitspan(end)],[Yss_new,Yss_new],'Color',[1 0 0],'LineStyle','--')
 xlabel('Time')
 ylabel('Output');
 title('Transition for Output')
-legend('Output','Yss','Location','SouthEast');
+legend('Output','New st st','Location','SouthEast');
 legend boxoff;
 set(gca,'FontSize',fsizenum)
 
-saveas(transition_new,"q_2_3.png")
+saveas(transition_new,"q_2_4.png")
+saveas(transition_new,"/Users/veronica/Dropbox/Apps/Overleaf/Macro_EC_702_PS_cd0814_jayinliu_vcperez/figures/PS_5_q_2_4.png")
