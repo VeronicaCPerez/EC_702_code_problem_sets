@@ -241,14 +241,13 @@ ctransit = zeros(T, 1);  % Preallocate the consumption transition vector
 ktransit(1) = kinit;  % First entry of the capital transition is the initial condition
 
 for it = 2:T
-    % Determine the shock type (low or high)
-    v_sigma = Zsim(it) * sigma;
-
     % Update capital using policy functions
-    if v_sigma > 0  % High shock
+    if Zsim(it) == sigma  % High shock
         ktransit(it) = interp1(K0, Kpol_zhigh, kinit, 'linear', 'extrap');
+        v_sigma = sigma
     else  % Low shock
         ktransit(it) = interp1(K0, Kpol_zlow, kinit, 'linear', 'extrap');
+        v_sigma = -sigma
     end
 
     % Update consumption and investment
