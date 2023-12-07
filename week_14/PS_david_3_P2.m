@@ -182,50 +182,11 @@ Zsim = Zgrid(Zsimind);
 
 %%%%%%%%%
 % Plot simulated path for Z
+%%%%%%%%%
 figure; 
 scatter(1:T-1,Zsim(1:T-1),'LineWidth',3);
 xlabel('t'); ylabel('Z'); title('Simulation of Two-State Markov Chain')
 set(gca,'FontSize',14); ylim([-0.2 0.2])
-
-%% 6. transit for i and c
-
-kstart=0.1*kss_z_zero;                     %initial condition---past steady state
-[~,kindex]=min(abs(K0-kstart)); %grid point closer to initial condition
-kinit=K0(kindex);               %point in grid closer to kstart as initial condition
-
-ktransit=zeros(T,1);    %preallocate the capital transition vector
-itransit=zeros(T,1);    %preallocate the consumption transition vector
-ctransit=zeros(T,1);    %preallocate the investment transition vector
-
-ktransit(1)=kinit;      %first entry of capital transition is initial condition
-
-for it=2:T
-    % we can have a low shock or a high shock, then we have an if else
-     % if high shock
-     if Zsim(it) == sigma
-         ktransit(it) = Kpol_zhigh(K0==kinit)
-         v_sigma = sigma
-     % low shock
-     else
-         ktransit(it) = Kpol_zlow(K0==kinit)
-         v_sigma = -sigma
-    % update consumption
-    ctransit(it) = exp(v_sigma).*(kinit.^(theta)) + (1-delta).*kinit - ktransit(it)
-    % update investment
-    itransit(it) = ktransit(it) - (1-delta).*kinit
-
-    % update kinit_value: 
-    kinit=ktransit(it); %update initial capital value
-end
-
-ktransit=[kstart kstart ktransit'];
-% Transition plots
-transition=figure;
-plot(transitspan,ktransit,'b--','LineWidth',lwidnum)
-xlabel('Time')
-ylabel('Capital');
-title('Transition for Capital')
-set(gca,'FontSize',fsizenum)
 
 
 %% 6. Transit for i and c
@@ -244,14 +205,14 @@ for it = 2:T
     % Update capital using policy functions
     if Zsim(it) == sigma  % High shock
         ktransit(it) = interp1(K0, Kpol_zhigh, kinit, 'linear', 'extrap');
-        v_sigma = sigma
+        ctransit(it) = (exp(sigma) .* (kinit.^theta)) + (1-delta).* kinit - ktransit(it);
     else  % Low shock
         ktransit(it) = interp1(K0, Kpol_zlow, kinit, 'linear', 'extrap');
-        v_sigma = -sigma
+        ctransit(it) = (exp(-sigma) .* (kinit.^theta)) + (1-delta).* kinit - ktransit(it);
     end
 
-    % Update consumption and investment
-    ctransit(it) = exp(v_sigma) * (kinit^theta) + (1 - delta) * kinit - ktransit(it);
+    % Update investment
+    
     itransit(it) = ktransit(it) - (1 - delta) * kinit;
 
     % Update kinit
